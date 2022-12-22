@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBimbelsTable extends Migration
+class AddDeletedAtToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateBimbelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bimbels', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->text('desc')->nullable();
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateBimbelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bimbels');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

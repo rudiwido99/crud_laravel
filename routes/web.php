@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BimbelController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function(){
-    return view('home');
+Route::get('dashboard', function(){
+    return view('index');
 });
 
+Route::get('brand', [BrandController::class, 'index']);
+Route::get('brand/create', [BrandController::class, 'create']);
+Route::post('brand', [BrandController::class, 'addBrand']);
+Route::get('brand/edit/{id}', [BrandController::class, 'edit']);
+Route::put('brand/{id}', [BrandController::class, 'editProses']);
+Route::delete('brand/{id}', [BrandController::class, 'delete']);
 
-Route::get('jenjang', [BimbelController::class, 'index']);
-Route::get('jenjang/create', [BimbelController::class, 'create']);
-Route::post('jenjang', [BimbelController::class, 'store']);
-Route::get('jenjang/edit/{id}', [BimbelController::class, 'edit']);
-Route::put('jenjang/{id}', [BimbelController::class, 'editProses']);
-Route::delete('jenjang/{id}', [BimbelController::class, 'delete']);
+Route::resource('product', ProductController::class);
