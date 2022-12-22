@@ -95,6 +95,12 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="pull-left">
+                        Showing {{$products->firstItem()}} of {{$products->lastItem()}} to {{$products->total()}} data entries
+                    </div>
+                    <div class="pull-right">
+                        {{ $products->links() }}
+                    </div>
                 </div>
             </div>
         </div>

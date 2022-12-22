@@ -160,7 +160,7 @@ class ProductController extends Controller
     }
 
     public function trash(){
-        $products = Product::onlyTrashed()->get();
+        $products = Product::onlyTrashed()->paginate(5);
         // return $products;
         return view('product.trash', compact('products', $products));
     }

@@ -53,9 +53,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brands as $item)
+                            @foreach ($brands as $key => $item)
                                 <tr class="text-center">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $brands->firstItem() + $key }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->desc }}</td>
                                     <td>
@@ -77,6 +77,12 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="pull-left">
+                        Showing {{$brands->firstItem()}} of {{$brands->lastItem()}} to {{$brands->total()}} data entries
+                    </div>
+                    <div class="pull-right">
+                        {{ $brands->links() }}
+                    </div>
                 </div>
             </div>
         </div>

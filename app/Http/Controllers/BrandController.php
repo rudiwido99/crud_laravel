@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BrandController extends Controller
 {
     public function index(){
-        $brands = DB::table('brands')->get();
+        $brands = DB::table('brands')->paginate(5);
         return view('brand.index', ['brands' => $brands]);
     }
 
