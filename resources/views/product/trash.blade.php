@@ -1,12 +1,12 @@
 @extends('template.main')
-@section('title' , 'Data Product')
+@section('title' , 'Data Trash')
 @section('breadcrumbs')
     <div class="breadcrumbs">
         <div class="animated fadeIn">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Product Sport</h1>
+                        <h1>Trash Product</h1>
                     </div>
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active"><a href="">Product / </a>Data</li> 
+                            <li class="active"><a href="">Product / </a>Trash</li> 
                         </ol>
                     </div>
                 </div>
@@ -34,14 +34,17 @@
             <div class="card">
                 <div class="card-header">
                     <div class="pull-left">
-                        <strong>Data Product Sport</strong>
+                        <strong>Data Trash Product</strong>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ url('product/trash') }}" class="btn btn-danger btn-sm">Data Trash
+                        <a href="{{ url('product/delete') }}" class="btn btn-danger btn-sm" onclick ="return confirm('Yakin ingin hapus semua data?')">Delete All
                             <i class="fa fa-trash"></i>
                         </a>
-                        <a href="{{ url('product/create') }}" class="btn btn-success btn-sm">Tambah
-                            <i class="fa fa-plus"></i>
+                        <a href="{{ url('product/restore') }}" class="btn btn-warning btn-sm">Restore All
+                            <i class="fa fa-redo"></i>
+                        </a>
+                        <a href="{{ url('product') }}" class="btn btn-secondary btn-sm">Kembali
+                            <i class="fa fa-undo"></i>
                         </a>
                     </div>
                 </div>
@@ -59,39 +62,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $key => $item)
+                            @if ($products->count() > 0)
+                               @foreach ($products as $item)
                                 <tr class="text-center">
-                                    <td>{{ $products->firstItem() + $key }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->brand->name }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->harga }}</td>
                                     <td>{{ $item->stok }}</td>
                                     {{-- <td>{{ $item->info }}</td> --}}
                                     <td>
-                                        <a href="{{ url('product/'.$item->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-eye"></i>
+                                        <a href="{{ url('product/restore/'.$item->id) }}" class="btn btn-warning btn-sm">
+                                            Restore
                                         </a>
-                                        <a href="{{ url('product/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-pencil"></i>
+                                        <a href="{{ url('product/delete/'.$item->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus data?')">
+                                            Delete Permanen
                                         </a>
-                                        <form action="{{ url('product/'.$item->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
+                                        {{-- <form action="{{ url('product/'.$item->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-danger btn-sm">
                                                 <i class="fa fa-close"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach 
+                            @else
+                                <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
-                    <div class="pull-left">
-                        Showing {{$products->firstItem()}} of {{$products->lastItem()}} to {{$products->total()}} data entries
-                    </div>
-                    <div class="pull-right">
-                        {{ $products->links() }}
-                    </div>
                 </div>
             </div>
         </div>

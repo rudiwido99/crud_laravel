@@ -30,4 +30,7 @@ Route::get('brand/edit/{id}', [BrandController::class, 'edit']);
 Route::put('brand/{id}', [BrandController::class, 'editProses']);
 Route::delete('brand/{id}', [BrandController::class, 'delete']);
 
+Route::get('product/trash', [ProductController::class, 'trash']);
+Route::get('product/restore/{id?}', [ProductController::class, 'restore']);
+Route::get('product/delete/{id?}', [ProductController::class, 'delete']);
 Route::resource('product', ProductController::class);

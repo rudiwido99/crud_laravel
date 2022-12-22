@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        // $products = Product::withTrashed()->get();
+        // $products = Product::all();
+        $products = Product::with('brand')->paginate(5);
         // return $products;
         return view('product.index', compact('products', $products));
     }
@@ -148,7 +148,7 @@ class ProductController extends Controller
     {
         // cara 1
         // Product::find($product->id);
-        $product->forceDelete();
+        $product->delete();
 
         // cara 2
         // Product::destroy($product->id);
@@ -158,4 +158,34 @@ class ProductController extends Controller
 
         return redirect('product')->with('status', 'Data Produk berhasil dihapus!');
     }
+
+    public function trash(){
+        $products = Product::onlyTrashed()->get();
+        // return $products;
+        return view('product.trash', compact('products', $products));
+    }
+
+    public function restore($id = null){
+        if($id != null){
+        $product = Product::onlyTrashed()
+                    ->where('id', $id)
+                    ->restore();
+        } else {
+            $product = Product::onlyTrashed()->restore();
+        }
+        return redirect('product/trash')->with('status', 'Data Produk berhasil di-restore!');
+    }
+
+    public function delete($id = null){
+        if($id != null){
+        $product = Product::onlyTrashed()
+                    ->where('id', $id)
+                    ->forceDelete();
+        } else {
+            $product = Product::onlyTrashed()->forceDelete();
+        }
+        return redirect('product/trash')->with('status', 'Data Produk berhasil dihapus permanen!');
+    }
+
+
 }
