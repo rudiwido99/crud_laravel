@@ -2,10 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Article extends Model
+class Article
 {
-    use HasFactory;
+    private static $blog = [
+                [
+                    'judul' => 'Postingan Pertama',
+                    'slug' => 'postingan-pertama',
+                    'author' => 'Rudi Wido A',
+                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
+                ],
+                [
+                    'judul' => 'Postingan Kedua',
+                    'slug' => 'postingan-kedua',
+                    'author' => 'Feri Kurniawan',
+                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
+                ]
+        ];
+    
+    public static function all(){
+        return collect(self::$blog);
+    }
+
+    public static function find($slug){
+        $posts = static::all();
+        // $post = [];
+        // foreach ($posts as $p) {
+        //     if($p['slug'] === $slug){
+        //         $post = $p;
+        //     }
+        // }
+        return $posts->firstWhere('slug', $slug);
+    }
 }

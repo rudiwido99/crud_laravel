@@ -4,10 +4,11 @@
     <div class="container">
         <div class="row my-4">
             <article class="my-3">
-                <h2>Judul</h2>
-                <h5>By : Rudi Wido Atmojo</h5>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi maiores pariatur numquam qui dicta sunt ipsum corrupti tempore aspernatur laborum.</p>
+                <h2>{{ $post['judul'] }}</h2>
+                <h5>By : {{ $post['author'] }}</h5>
+                <p>{{ $post['desc'] }}</p>
             </article>    
         </div>
+        <a href="{{ url('posts') }}">Back to posts</a>
     </div>
 @endsection

@@ -23,7 +23,7 @@
                 <a class="nav-link @if($title == 'About') active @endif" href="{{ url('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($title == 'Blog') active @endif" href="{{ url('blog') }}">Blog</a>
+                <a class="nav-link @if($title == 'Blog') active @endif" href="{{ url('posts') }}">Blog</a>
                 </li>
             </ul>
             </div>
