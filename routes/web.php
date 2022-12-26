@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -27,9 +28,30 @@ Route::get('about', function(){
     ]);
 });
 
-Route::get('blog', function(){
+Route::get('posts', function(){
+    $blog = [
+                [
+                    'judul' => 'Postingan Pertama',
+                    'slug' => 'postingan-pertama',
+                    'author' => 'Rudi Wido A',
+                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
+                ],
+                [
+                    'judul' => 'Postingan Kedua',
+                    'slug' => 'postingan-kedua',
+                    'author' => 'Feri Kurniawan',
+                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
+                ]
+        ];
     return view('frontend.blog', [
-        'title' => 'Blog'
+        'title' => 'Blog',
+        'blog' => $blog
+    ]);
+});
+
+Route::get('post/{slug}', function($slug){
+    return view('frontend.post',[
+        'title' => 'Single Post'
     ]);
 });
 
@@ -48,3 +70,7 @@ Route::get('product/trash', [ProductController::class, 'trash']);
 Route::get('product/restore/{id?}', [ProductController::class, 'restore']);
 Route::get('product/delete/{id?}', [ProductController::class, 'delete']);
 Route::resource('product', ProductController::class);
+
+Route::resource('article', ArticleController::class);
+
+

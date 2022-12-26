@@ -40,14 +40,17 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li class="">
                         <a href="{{ url('dashboard') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="{{ url('brand') }}"> <i class="menu-icon fa fa-clipboard"></i>Brand </a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="{{ url('product') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Produk </a>
+                    </li>
+                     <li class="">
+                        <a href="{{ url('article') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Artikel </a>
                     </li>
                     <h3 class="menu-title">Akses</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
