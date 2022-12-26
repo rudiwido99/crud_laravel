@@ -1,4 +1,4 @@
-@extends('template.main')
+@extends('template.dashboard.main')
 @section('title' , 'Data Brand')
 @section('breadcrumbs')
     <div class="breadcrumbs">
@@ -59,9 +59,6 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->desc }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
                                         <a href="{{ url('brand/edit/'.$item->id) }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>

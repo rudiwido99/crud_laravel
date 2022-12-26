@@ -1,4 +1,4 @@
-@extends('template.main')
+@extends('template.dashboard.main')
 @section('title' , 'Edit Brand')
 @section('breadcrumbs')
     <div class="breadcrumbs">

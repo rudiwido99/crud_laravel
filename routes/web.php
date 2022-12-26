@@ -16,11 +16,25 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'title' => 'Home',
+    ]);
+});
+
+Route::get('about', function(){
+    return view('frontend.about', [
+        'title' => 'About'
+    ]);
+});
+
+Route::get('blog', function(){
+    return view('frontend.blog', [
+        'title' => 'Blog'
+    ]);
 });
 
 Route::get('dashboard', function(){
-    return view('index');
+    return view('dashboard');
 });
 
 Route::get('brand', [BrandController::class, 'index']);
