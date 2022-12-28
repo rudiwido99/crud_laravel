@@ -47,11 +47,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Article $article)
     {
         return view('frontend.post',[
         'title' => 'Single Post',
-        'post' => Article::find($slug)
+        'post' => $article
     ]);
     }
 

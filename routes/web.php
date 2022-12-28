@@ -30,7 +30,7 @@ Route::get('about', function(){
 });
 
 Route::get('posts', [ArticleController::class, 'index']);
-Route::get('post/{slug}', [ArticleController::class, 'show']);
+Route::get('post/{article:slug}', [ArticleController::class, 'show']);
 
 Route::get('dashboard', function(){
     return view('dashboard');

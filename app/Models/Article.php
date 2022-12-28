@@ -2,35 +2,12 @@
 
 namespace App\Models;
 
-class Article
-{
-    private static $blog = [
-                [
-                    'judul' => 'Postingan Pertama',
-                    'slug' => 'postingan-pertama',
-                    'author' => 'Rudi Wido A',
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
-                ],
-                [
-                    'judul' => 'Postingan Kedua',
-                    'slug' => 'postingan-kedua',
-                    'author' => 'Feri Kurniawan',
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fugit similique tempore animi! Reprehenderit dolorum eaque fuga repellendus sed accusamus deserunt!'
-                ]
-        ];
-    
-    public static function all(){
-        return collect(self::$blog);
-    }
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-    public static function find($slug){
-        $posts = static::all();
-        // $post = [];
-        // foreach ($posts as $p) {
-        //     if($p['slug'] === $slug){
-        //         $post = $p;
-        //     }
-        // }
-        return $posts->firstWhere('slug', $slug);
-    }
+class Article extends Model
+{
+    use HasFactory;
+    // protected $fillable = ['title', 'excerpt', 'desc'];
+    protected $guarded = ['id'];
 }
