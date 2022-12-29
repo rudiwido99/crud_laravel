@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ArticleController;
@@ -29,12 +30,28 @@ Route::get('about', function(){
     ]);
 });
 
-Route::get('posts', [ArticleController::class, 'index']);
-Route::get('post/{article:slug}', [ArticleController::class, 'show']);
+Route::get('categories', function(){
+    return view('frontend.categories', [
+        'title' => 'Post Category',
+        'categories' => Category::all(),
+    ]);
+});
+
+Route::get('categories/{category:slug}', function(Category $category){
+    return view('frontend.category', [
+        'title' => $category->name,
+        'articles' => $category->articles,
+        'category' => $category->name
+    ]);
+});
+
 
 Route::get('dashboard', function(){
     return view('dashboard');
 });
+
+Route::get('posts', [ArticleController::class, 'index']);
+Route::get('post/{article:slug}', [ArticleController::class, 'show']);
 
 Route::get('brand', [BrandController::class, 'index']);
 Route::get('brand/create', [BrandController::class, 'create']);
@@ -48,6 +65,5 @@ Route::get('product/restore/{id?}', [ProductController::class, 'restore']);
 Route::get('product/delete/{id?}', [ProductController::class, 'delete']);
 Route::resource('product', ProductController::class);
 
-// Route::resource('article', ArticleController::class);
 
 
