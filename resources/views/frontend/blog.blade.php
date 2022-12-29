@@ -4,12 +4,13 @@
     <div class="container">
         <div class="row my-4">
             @foreach ($blog as $item)
-                <article class="my-3">
+                <article class="my-3 border-bottom pb-4">
                     <h2>
-                        <a href="post/{{$item->slug}}">{{ $item->title }}</a>
+                        <a href="post/{{$item->slug}}" class="text-decoration-none">{{ $item->title }}</a>
                     </h2>
-                    <h5>By : {{ $item['author'] }}</h5>
+                    <p>By : {{ $item->user->name }} in <a href="/categories/{{ $item->category->slug }}"  class="text-decoration-none">{{ $item->category->name }}</a> </p>
                     <p>{{ $item->excerpt }}</p>
+                    <a href="post/{{$item->slug}}" class="text-decoration-none">Read more...</a>
                 </article>
             @endforeach
         </div>

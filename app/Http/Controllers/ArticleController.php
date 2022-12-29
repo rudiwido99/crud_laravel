@@ -51,7 +51,7 @@ class ArticleController extends Controller
     {
         return view('frontend.post',[
         'title' => 'Single Post',
-        'post' => $article
+        'articles' => $article
     ]);
     }
 

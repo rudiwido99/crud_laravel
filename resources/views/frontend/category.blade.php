@@ -1,5 +1,5 @@
 @extends('template.front.main')
-@section('title', 'Blog')
+@section('title', 'Article Category')
 @section('content')
     <div class="container">
         <div class="row my-4">
