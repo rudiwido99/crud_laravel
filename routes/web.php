@@ -32,24 +32,23 @@ Route::get('about', function(){
 });
 
 Route::get('categories', function(){
-    return view('frontend.categories', [
+    return view('frontend.blog', [
         'title' => 'Post Category',
         'categories' => Category::all(),
     ]);
 });
 
 Route::get('categories/{category:slug}', function(Category $category){
-    return view('frontend.category', [
-        'title' => $category->name,
-        'articles' => $category->articles,
-        'category' => $category->name
+    return view('frontend.blog', [
+        'title' => "Post By Category : $category->name",
+        'blog' => $category->articles->load('author', 'category'),
     ]);
 });
 
 Route::get('authors/{author:username}', function(User $author){
     return view('frontend.blog', [
-        'title' => 'User Post',
-        'blog' => $author->articles,
+        'title' => "Post By User : $author->name",
+        'blog' => $author->articles->load('author', 'category'),
     ]);
 });
 

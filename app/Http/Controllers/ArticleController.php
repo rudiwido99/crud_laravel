@@ -15,9 +15,9 @@ class ArticleController extends Controller
     public function index()
     {
         return view('frontend.blog', [
-        'title' => 'Blog',
+        'title' => 'All Post',
         // 'blog' => Article::all()
-        'blog' => Article::latest()->get()
+        'blog' => Article::with(['author', 'category'])->latest()->get()
     ]);
     }
 

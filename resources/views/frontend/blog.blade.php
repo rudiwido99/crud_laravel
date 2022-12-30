@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row my-4">
+            <h1 class="my-4">{{$title}}</h1>
             @foreach ($blog as $item)
                 <article class="my-3 border-bottom pb-4">
                     <h2>
