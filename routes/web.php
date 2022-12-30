@@ -32,7 +32,7 @@ Route::get('about', function(){
 });
 
 Route::get('categories', function(){
-    return view('frontend.blog', [
+    return view('frontend.categories', [
         'title' => 'Post Category',
         'categories' => Category::all(),
     ]);
