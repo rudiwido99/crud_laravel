@@ -16,7 +16,8 @@ class ArticleController extends Controller
     {
         return view('frontend.blog', [
         'title' => 'Blog',
-        'blog' => Article::all()
+        // 'blog' => Article::all()
+        'blog' => Article::latest()->get()
     ]);
     }
 

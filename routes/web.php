@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,13 @@ Route::get('categories/{category:slug}', function(Category $category){
         'title' => $category->name,
         'articles' => $category->articles,
         'category' => $category->name
+    ]);
+});
+
+Route::get('authors/{author:username}', function(User $author){
+    return view('frontend.blog', [
+        'title' => 'User Post',
+        'blog' => $author->articles,
     ]);
 });
 

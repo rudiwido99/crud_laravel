@@ -5,11 +5,11 @@
         <div class="row my-4">
             <h1>Article Category : {{ $category }}</h1>
             @foreach ($articles as $item)
-                <article class="my-3">
+                <article class="my-4 border-bottom">
                     <h2>
-                        <a href="/post/{{$item->slug}}">{{ $item->title }}</a>
+                        <a href="/post/{{$item->slug}}" class="text-decoration-none">{{ $item->title }}</a>
                     </h2>
-                    <h5>By : {{ $item['author'] }}</h5>
+                    <p>By : {{ $item->author->name }}</p>
                     <p>{{ $item->excerpt }}</p>
                 </article>
             @endforeach
