@@ -17,13 +17,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link @if($title == 'Home') active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
+                <a class="nav-link @if($active == 'home') active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($title == 'About') active @endif" href="{{ url('about') }}">About</a>
+                <a class="nav-link @if($active == 'about') active @endif" href="{{ url('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($title == 'Blog') active @endif" href="{{ url('posts') }}">Blog</a>
+                <a class="nav-link @if($active == 'blog') active @endif" href="{{ url('posts') }}">Blog</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link @if($active == 'categories') active @endif" href="{{ url('categories') }}">Categories</a>
                 </li>
             </ul>
             </div>

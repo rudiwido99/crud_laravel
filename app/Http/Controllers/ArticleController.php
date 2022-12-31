@@ -16,6 +16,7 @@ class ArticleController extends Controller
     {
         return view('frontend.blog', [
         'title' => 'Semua Postingan',
+        'active' => 'blog',
         // 'blog' => Article::all()
         'blog' => Article::latest()->get()
     ]);
@@ -52,6 +53,7 @@ class ArticleController extends Controller
     {
         return view('frontend.post',[
         'title' => 'Single Post',
+        'active' => 'blog',
         'articles' => $article
     ]);
     }

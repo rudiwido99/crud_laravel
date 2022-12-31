@@ -22,18 +22,21 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('home', [
         'title' => 'Home',
+        'active' => 'home',
     ]);
 });
 
 Route::get('about', function(){
     return view('frontend.about', [
-        'title' => 'About'
+        'title' => 'About',
+        'active' => 'about',
     ]);
 });
 
 Route::get('categories', function(){
     return view('frontend.categories', [
         'title' => 'Post Category',
+        'active' => 'categories',
         'categories' => Category::all(),
     ]);
 });
@@ -41,6 +44,7 @@ Route::get('categories', function(){
 Route::get('categories/{category:slug}', function(Category $category){
     return view('frontend.blog', [
         'title' => "Post By Category : $category->name",
+        'active' => 'categories',
         'blog' => $category->articles->load('author', 'category'),
     ]);
 });

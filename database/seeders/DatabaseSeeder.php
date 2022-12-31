@@ -40,6 +40,11 @@ class DatabaseSeeder extends Seeder
             'slug' => 'design-grafis'
         ]);
 
+        Category::create([
+            'name' => 'Sport',
+            'slug' => 'sport'
+        ]);
+
 
         Article::factory(20)->create();
 
