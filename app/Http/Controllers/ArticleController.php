@@ -14,11 +14,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
+
         return view('frontend.blog', [
-        'title' => 'Semua Postingan',
-        'active' => 'blog',
-        // 'blog' => Article::all()
-        'blog' => Article::latest()->get()
+            'title' => 'Semua Postingan',
+            'active' => 'blog',
+            'blog' => Article::latest()->filter(request(['search', 'category']))->get()
     ]);
     }
 

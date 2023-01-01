@@ -4,7 +4,6 @@
     <div class="container">
         <div class="row my-4">
             <h1 class="mb-5">Category</h1>
-
             <div class="container">
                 <div class="row">
                     @foreach ($categories as $item)
@@ -25,4 +24,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection 
