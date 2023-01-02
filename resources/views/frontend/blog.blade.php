@@ -11,6 +11,9 @@
                         @if (request('category'))
                             <input type="hidden" name="category" value="{{ request('category') }}">
                         @endif
+                         @if (request('author'))
+                            <input type="hidden" name="author" value="{{ request('author') }}">
+                        @endif
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Search..." 
                             name="search" value="{{ request('search') }}">
@@ -27,7 +30,7 @@
                         <h5 class="card-title"><a href="post/{{$blog[0]->slug}}" class="text-decoration-none text-dark">{{$blog[0]->title}}</a></h5>
                         <p>
                             <small class="text-muted">
-                                By : <a href="/authors/{{ $blog[0]->author->username }}" class="text-decoration-none">
+                                By : <a href="/posts?author={{ $blog[0]->author->username }}" class="text-decoration-none">
                                 {{ $blog[0]->author->name }}</a> in <a href="/posts?category={{ $blog[0]->category->slug }}"  class="text-decoration-none">
                                 {{ $blog[0]->category->name }}</a> {{ $blog[0]->created_at->diffForHumans() }}  
                             </small>
@@ -49,7 +52,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="post/{{$item->slug}}" class="text-decoration-none text-dark">{{ $item->title }}</a></h5>
                                     <small class="text-muted">
-                                        <p>By : <a href="/authors/{{ $item->author->username }}" class="text-decoration-none">
+                                        <p>By : <a href="/posts?author={{ $item->author->username }}" class="text-decoration-none">
                                             {{ $item->author->name }}</a> {{ $item->created_at->diffForHumans() }}
                                         </p>
                                     </small>

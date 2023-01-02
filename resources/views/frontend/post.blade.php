@@ -5,7 +5,7 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-8">
                 <h1 class="my-3">{{ $articles->title }}</h1>
-                    <p>By : <a href="/authors/{{ $articles->author->username }}" class="text-decoration-none">{{ $articles->author->name }}</a> in 
+                    <p>By : <a href="/posts?author=/{{ $articles->author->username }}" class="text-decoration-none">{{ $articles->author->name }}</a> in 
                         <a href="/posts?category={{ $articles->category->slug }}" class="text-decoration-none">
                         {{ $articles->category->name }}</a> 
                     </p>
