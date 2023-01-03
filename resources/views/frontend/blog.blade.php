@@ -69,4 +69,11 @@
 @else
     <p class="text-center fs-4">Artikel tidak ditemukan.</p>
 @endif
+
+<div class="container">
+    <div class="d-flex justify-content-end">
+        {{ $blog->links() }}
+    </div>
+</div>
+
 @endsection

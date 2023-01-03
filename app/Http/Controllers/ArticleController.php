@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -19,16 +20,16 @@ class ArticleController extends Controller
         $title = '';
         if(request('category')){
             $category = Category::firstWhere('slug', request('category'));
-            $title = ' in ' . $caegory->name;
+            $title = ' in ' . $category->name;
         }
         if(request('author')){
             $author = User::firstWhere('username', request('author'));
             $title = ' by ' . $author->name;
         }
         return view('frontend.blog', [
-            'title' => 'Semua Postingan',
+            'title' => 'All Posts' . $title,
             'active' => 'blog',
-            'blog' => Article::latest()->filter(request(['search', 'category', 'author']))->get()
+            'blog' => Article::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
     ]);
     }
 

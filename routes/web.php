@@ -41,21 +41,21 @@ Route::get('categories', function(){
     ]);
 });
 
-Route::get('categories/{category:slug}', function(Category $category){
-    return view('frontend.blog', [
-        'title' => "Post By Category : $category->name",
-        'active' => 'categories',
-        'blog' => $category->articles->load('author', 'category'),
-    ]);
-});
+// Route::get('categories/{category:slug}', function(Category $category){
+//     return view('frontend.blog', [
+//         'title' => "Post By Category : $category->name",
+//         'active' => 'categories',
+//         'blog' => $category->articles->load('author', 'category'),
+//     ]);
+// });
 
-Route::get('authors/{author:username}', function(User $author){
-    return view('frontend.blog', [
-        'title' => "Post By User : $author->name",
-        'active' => 'posts',
-        'blog' => $author->articles->load('author', 'category'),
-    ]);
-});
+// Route::get('authors/{author:username}', function(User $author){
+//     return view('frontend.blog', [
+//         'title' => "Post By User : $author->name",
+//         'active' => 'posts',
+//         'blog' => $author->articles->load('author', 'category'),
+//     ]);
+// });
 
 
 Route::get('dashboard', function(){
