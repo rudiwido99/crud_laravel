@@ -1,12 +1,14 @@
 <?php
 
-use App\Models\User;
-use App\Models\Article;
+// use App\Models\User;
+// use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,9 @@ Route::get('categories', function(){
 //         'blog' => $author->articles->load('author', 'category'),
 //     ]);
 // });
+
+Route::get('login', [LoginController::class, 'index']);
+Route::get('register', [RegisterController::class, 'index']);
 
 
 Route::get('dashboard', function(){

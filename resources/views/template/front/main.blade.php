@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | Sport Store</title>
+    
+    {{-- Bootstrap Style & Icon --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  
+    {{-- Custom CSS --}}
+    <link rel="stylesheet" href="/css/style.css">
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -17,16 +24,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link @if($active == 'home') active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
+                  <a class="nav-link @if($active == 'home') active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($active == 'about') active @endif" href="{{ url('about') }}">About</a>
+                  <a class="nav-link @if($active == 'about') active @endif" href="{{ url('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($active == 'blog') active @endif" href="{{ url('posts') }}">Blog</a>
+                  <a class="nav-link @if($active == 'blog') active @endif" href="{{ url('posts') }}">Blog</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link @if($active == 'categories') active @endif" href="{{ url('categories') }}">Categories</a>
+                  <a class="nav-link @if($active == 'categories') active @endif" href="{{ url('categories') }}">Categories</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a href="/login" class="nav-link @if($active == 'login') active @endif"><i class="bi bi-box-arrow-in-right"></i> Login</a>
                 </li>
             </ul>
             </div>
