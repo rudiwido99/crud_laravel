@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,16 +60,19 @@ Route::get('categories', function(){
 //     ]);
 // });
 
-Route::get('login', [LoginController::class, 'index']);
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'authenticate']);
+Route::post('logout', [LoginController::class, 'logout']);
 
-Route::get('register', [RegisterController::class, 'index']);
+Route::get('register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store']);
 
 
-Route::get('dashboard', function(){
-    return view('dashboard');
-});
+// Route::get('dashboard', function(){
+//     return view('dashboard')->middleware('auth');
+// });
+
+Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('posts', [ArticleController::class, 'index']);
 Route::get('post/{article:slug}', [ArticleController::class, 'show']);
