@@ -97,7 +97,12 @@
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                {{-- <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a> --}}
+
+                                <form action="logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="nav-link border-0"><i class=""> Logout</i></button>
+                                </form>
                         </div>
                     </div>
                 </div>
