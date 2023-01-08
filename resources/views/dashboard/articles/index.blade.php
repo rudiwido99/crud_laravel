@@ -1,11 +1,11 @@
 @extends('template.dashboard.main')
-@section('title' , 'Dashboard')
+@section('title' , 'Data Artikel')
 @section('breadcrumbs')
     <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Dashboard</h1>
+                        <h1>Data Artikel</h1>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li class="active">Selamat Datang, {{ auth()->user()->name }}</li>
+                            <li class="active"><a href="">Artikel / </a>Data</li> 
                         </ol>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Route::post('register', [RegisterController::class, 'store']);
 // });
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('article', DashboardArticleController::class)->middleware('auth');
 
 Route::get('posts', [ArticleController::class, 'index']);
 Route::get('post/{article:slug}', [ArticleController::class, 'show']);
