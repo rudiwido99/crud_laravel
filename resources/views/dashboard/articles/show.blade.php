@@ -43,14 +43,15 @@
                     </div>
                 </div> --}}
                 <div class="card-body">
-                    <div class="row justify-content-center mb-5">
-                        <div class="col-md-8">
+                    <div class="row justify-content-center my-1">
+                        <div class="col-lg-8">
                             <h1 class="my-3">{{ $article->title }}</h1>
-                                <p>By : <a href="/posts?author=/{{ $article->author->username }}" class="text-decoration-none">{{ $article->author->name }}</a> in 
-                                    <a href="/posts?category={{ $article->category->slug }}" class="text-decoration-none">
-                                    {{ $article->category->name }}</a> 
-                                </p>
-                                <img src="https://source.unsplash.com/1200x400/?{{ $article->category->name }}" alt="{{ $article->category->name }}" class="img-fluid">
+
+                                <a href="{{ url('article') }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back to all my posts</a>
+                                <a href="" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+
+                                <img src="https://source.unsplash.com/1200x400/?{{ $article->category->name }}" alt="{{ $article->category->name }}" class="img-fluid mt-3">
 
                                 <article class="my-3">
                                     {!! $article->desc !!}
