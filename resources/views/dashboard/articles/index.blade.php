@@ -62,13 +62,13 @@
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->category->name }}</td>
                                     <td class="text-center">
-                                        <a href="{{ url('article/'.$article->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ url('article/'.$article->slug) }}" class="btn btn-warning btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ url('article/'.$article->id.'/edit') }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ url('article/'.$article->slug.'/edit') }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <form action="{{ url('article/'.$article->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
+                                        <form action="{{ url('article/'.$article->slug) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-danger btn-sm">

@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Models\DashboardArticle;
 
-class DashboardArticleController extends Controller
+class ArticlePostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class DashboardArticleController extends Controller
      */
     public function index()
     {
-        return view('dashboard.articles.index', [
+       return view('dashboard.articles.index', [
             'articles' => Article::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -44,21 +43,23 @@ class DashboardArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DashboardArticle  $dashboardArticle
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(DashboardArticle $dashboardArticle)
+    public function show(Article $article)
     {
-        return $dashboardArticle;
+        return view('dashboard.articles.show', [
+            'article' => $article
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\DashboardArticle  $dashboardArticle
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(DashboardArticle $dashboardArticle)
+    public function edit(Article $article)
     {
         //
     }
@@ -67,10 +68,10 @@ class DashboardArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DashboardArticle  $dashboardArticle
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DashboardArticle $dashboardArticle)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -78,10 +79,10 @@ class DashboardArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DashboardArticle  $dashboardArticle
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DashboardArticle $dashboardArticle)
+    public function destroy(Article $article)
     {
         //
     }
