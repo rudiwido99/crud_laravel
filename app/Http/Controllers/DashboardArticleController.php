@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DashboardArticle;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Models\DashboardArticle;
 
 class DashboardArticleController extends Controller
 {
@@ -14,7 +15,9 @@ class DashboardArticleController extends Controller
      */
     public function index()
     {
-        return view('dashboard.articles.index');
+        return view('dashboard.articles.index', [
+            'articles' => Article::where('user_id', auth()->user()->id)->get()
+        ]);
     }
 
     /**
@@ -46,7 +49,7 @@ class DashboardArticleController extends Controller
      */
     public function show(DashboardArticle $dashboardArticle)
     {
-        //
+        return $dashboardArticle;
     }
 
     /**

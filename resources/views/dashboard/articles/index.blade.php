@@ -2,6 +2,7 @@
 @section('title' , 'Data Artikel')
 @section('breadcrumbs')
     <div class="breadcrumbs">
+        <div class="animated fadeIn">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
@@ -19,74 +20,74 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
+
 @section('content')
-        <div class="content mt-3">
-            <div class="col-xl-3 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Total Profit</div>
-                                <div class="stat-digit">1,012</div>
-                            </div>
-                        </div>
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="card">
+                <div class="card-header">
+                    <div class="pull-left">
+                        <strong>Data Artikel</strong>
                     </div>
+                    <div class="pull-right">
+                        <a href="{{ url('product/trash') }}" class="btn btn-danger btn-sm">Data Trash
+                            <i class="fa fa-trash"></i>
+                        </a>
+                        <a href="{{ url('product/create') }}" class="btn btn-success btn-sm">Tambah
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Kategori</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($articles as $article)
+                                <tr class="">
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td>{{ $article->title }}</td>
+                                    <td>{{ $article->category->name }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ url('article/'.$article->id) }}" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="{{ url('article/'.$article->id.'/edit') }}" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <form action="{{ url('article/'.$article->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{-- <div class="pull-left">
+                        Showing {{$products->firstItem()}} of {{$products->lastItem()}} to {{$products->total()}} data entries
+                    </div>
+                    <div class="pull-right">
+                        {{ $products->links() }}
+                    </div> --}}
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">New Customer</div>
-                                <div class="stat-digit">961</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Active Projects</div>
-                                <div class="stat-digit">770</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Active Projects</div>
-                                <div class="stat-digit">770</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- <div class="col-xl-6">
-                <div class="card" >
-                    <div class="card-header">
-                        <h4>World</h4>
-                    </div>
-                    <div class="Vector-map-js">
-                        <div id="vmap" class="vmap" style="height: 265px;"></div>
-                    </div>
-                </div>
-                <!-- /# card -->
-            </div> --}}
-
-
-        </div> <!-- .content -->
+        </div>
+    </div>
 @endsection
