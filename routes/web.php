@@ -75,6 +75,7 @@ Route::post('register', [RegisterController::class, 'store']);
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('article', ArticlePostController::class)->middleware('auth');
+Route::get('article/checkSlug', [ArticlePostController::class, 'checkSlug'])->middleware('auth');
 
 Route::get('posts', [ArticleController::class, 'index']);
 Route::get('post/{article:slug}', [ArticleController::class, 'show']);

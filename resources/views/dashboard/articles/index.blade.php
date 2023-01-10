@@ -40,7 +40,7 @@
                         <a href="{{ url('product/trash') }}" class="btn btn-danger btn-sm">Data Trash
                             <i class="fa fa-trash"></i>
                         </a>
-                        <a href="{{ url('product/create') }}" class="btn btn-success btn-sm">Tambah
+                        <a href="{{ url('article/create') }}" class="btn btn-success btn-sm">Tambah
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>

@@ -49,7 +49,7 @@
                     <li class="{{ Request::is("product") ? "active" : "" }}">
                         <a href="{{ url('product') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Produk </a>
                     </li>
-                     <li class="{{ Request::is("article") ? "active" : "" }}">
+                     <li class="{{ Request::is("article*") ? "active" : "" }}">
                         <a href="{{ url('article') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Artikel </a>
                     </li>
                     <h3 class="menu-title">Akses</h3><!-- /.menu-title -->
