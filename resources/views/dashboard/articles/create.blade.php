@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <label for="title">Judul *</label>
                                     <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" autofocus>
-                                    @error('name')
+                                    @error('title')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -52,13 +52,17 @@
                                 </div>
                                  <div class="form-group">
                                     <label for="slug">Slug</label>
-                                    <input type="text" id="slug" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
-                                    @error('name')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+                                    <input type="text" id="slug" name="slug" class="form-control" disabled readonly>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="slug">Slug</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                 </div>
                                 <div class="form-group">
                                     <label for="">Deskripsi</label>
                                     <textarea name="desc" class="form-control @error('desc') is-invalid @enderror">{{ old('desc') }}</textarea>
@@ -76,7 +80,7 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         const title = document.querySelector('#title');
         const slug = document.querySelector('#slug');
 
@@ -84,6 +88,16 @@
             fetch('article/checkSlug?title=' + title.value)
             .then(response => response.json())
             .then(data => slug.value = data.slug)
+        });
+    </script> --}}
+    <script>
+        const title = document.querySelector("#title");
+        const slug = document.querySelector("#slug");
+
+        title.addEventListener("keyup", function() {
+            let preslug = title.value;
+            preslug = preslug.replace(/ /g,"-");
+            slug.value = preslug.toLowerCase();
         });
     </script>
 @endsection
