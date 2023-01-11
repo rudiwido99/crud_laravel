@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class ArticlePostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.articles.create');
+        return view('dashboard.articles.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**

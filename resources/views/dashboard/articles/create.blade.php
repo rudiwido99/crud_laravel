@@ -55,12 +55,11 @@
                                     <input type="text" id="slug" name="slug" class="form-control" disabled readonly>
                                  </div>
                                  <div class="form-group">
-                                    <label for="slug">Slug</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label for="slug">Category</label>
+                                    <select class="form-control" name="category_id">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{$category->name}}</option>
+                                        @endforeach
                                     </select>
                                  </div>
                                 <div class="form-group">
