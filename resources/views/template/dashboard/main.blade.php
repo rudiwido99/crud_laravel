@@ -19,7 +19,11 @@
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
     <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 </head>

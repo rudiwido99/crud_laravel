@@ -43,7 +43,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Judul *</label>
-                                    <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" autofocus>
+                                    <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" autofocus value="{{ old('title')}}">
                                     @error('title')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
@@ -52,30 +52,33 @@
                                 </div>
                                  <div class="form-group">
                                     <label for="slug">Slug</label>
-                                    <input type="text" id="slug" name="slug" class="form-control" disabled readonly>
+                                    <input type="text" id="slug" name="slug" class="form-control @error('slug') is-invalid @enderror" disabled readonly value="{{ old('slug') }}">
+                                    @error('slug')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                  </div>
                                  <div class="form-group">
                                     <label for="slug">Category</label>
+                                    @error('body')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     <select class="form-control" name="category_id">
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{$category->name}}</option>
+                                            @if(old('category_id') == $category->id)
+                                                <option value="{{ $category->id }}" selected>{{$category->name}}</option>
+                                            @else
+                                                <option value="{{ $category->id }}">{{$category->name}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                  </div>
                                  <div class="form-group">
                                     <label for="slug">Tulis Artikel</label>
-                                    <input id="body" type="hidden" name="body">
+                                    <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                                     <trix-editor input="body"></trix-editor>
                                  </div>
-                                <div class="form-group">
-                                    <label for="">Deskripsi</label>
-                                    <textarea name="desc" class="form-control @error('desc') is-invalid @enderror">{{ old('desc') }}</textarea>
-                                    @error('desc')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
                                 <button type="submit" class="btn btn-success btn-sm">Simpan</button>
                             </form>
                         </div>
@@ -103,5 +106,9 @@
             preslug = preslug.replace(/ /g,"-");
             slug.value = preslug.toLowerCase();
         });
+
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
     </script>
 @endsection

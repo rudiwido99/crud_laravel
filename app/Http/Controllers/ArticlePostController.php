@@ -41,7 +41,12 @@ class ArticlePostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:articles',
+            'category_id' => 'required',
+            'body' => 'required'
+        ]);
     }
 
     /**
