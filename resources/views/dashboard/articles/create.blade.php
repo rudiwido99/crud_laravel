@@ -62,6 +62,11 @@
                                         @endforeach
                                     </select>
                                  </div>
+                                 <div class="form-group">
+                                    <label for="slug">Tulis Artikel</label>
+                                    <input id="body" type="hidden" name="body">
+                                    <trix-editor input="body"></trix-editor>
+                                 </div>
                                 <div class="form-group">
                                     <label for="">Deskripsi</label>
                                     <textarea name="desc" class="form-control @error('desc') is-invalid @enderror">{{ old('desc') }}</textarea>
