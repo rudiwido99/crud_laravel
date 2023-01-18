@@ -54,8 +54,8 @@
                         <div class="col-md-4 mb-3">
                             <div class="card">
                                 <div class="position-absolute px-3 py-2 text-white" style="background: rgb(0,0,0,0.7)"><a href="/posts?category={{ $item->category->slug }}" class="text-decoration-none text-white">{{ $item->category->name }}</a></div>
-                                @if ($blog->image)
-                                    <img src="{{ asset('storage/'. $blog->image) }}" alt="{{ $blog->category->name }}" class="img-fluid mt-3">
+                                @if ($item->image)
+                                    <img src="{{ asset('storage/'. $item->image) }}" alt="{{ $item->category->name }}" class="img-fluid mt-3">
                                 @else
                                     <img src="https://source.unsplash.com/400x300?{{ $item->category->name }}" class="card-img-top" alt="{{ $item->category->name }}">
                                 @endif
