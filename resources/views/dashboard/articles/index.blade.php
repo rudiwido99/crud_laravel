@@ -22,13 +22,12 @@
         </div>
     </div>
 @endsection
-
 @section('content')
     <div class="content mt-3">
         <div class="animated fadeIn">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
+            @if(session()->has('success'))
+                <div class="alert alert-success" role='alert'>
+                    {{ session('success') }}
                 </div>
             @endif
             <div class="card">
@@ -65,10 +64,10 @@
                                         <a href="{{ url('article/'.$article->slug) }}" class="btn btn-warning btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ url('article/'.$article->slug.'/edit') }}" class="btn btn-primary btn-sm">
+                                        <a href="article/{{ $article->slug }}/edit" class="btn btn-primary btn-sm">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <form action="{{ url('article/'.$article->slug) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
+                                        <form action="article/{{ $article->slug }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-danger btn-sm">

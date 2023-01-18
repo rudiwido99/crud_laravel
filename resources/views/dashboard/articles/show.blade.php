@@ -49,7 +49,13 @@
 
                                 <a href="{{ url('article') }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back to all my posts</a>
                                 <a href="" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
-                                <a href="" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                                <form action="{{ $article->slug }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
 
                                 <img src="https://source.unsplash.com/1200x400/?{{ $article->category->name }}" alt="{{ $article->category->name }}" class="img-fluid mt-3">
 

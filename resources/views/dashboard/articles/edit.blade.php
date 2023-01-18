@@ -6,7 +6,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Tambah Artikel</h1>
+                        <h1>Edit Artikel</h1>
                     </div>
                 </div>
             </div>
@@ -39,11 +39,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <form action="{{ url('article') }}" method="post">
+                            <form action="article'{{$article->slug}}"method="post">
+                                @method('put')
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Judul *</label>
-                                    <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" autofocus value="{{ old('title')}}">
+                                    <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $article->title) }}" autofocus value="{{ old('title')}}">
                                     @error('title')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
@@ -52,7 +53,7 @@
                                 </div>
                                  <div class="form-group">
                                     <label for="slug">Slug</label>
-                                    <input type="text" id="slug" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
+                                    <input type="text" id="slug" name="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug', $article->slug) }}">
                                     @error('slug')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
@@ -63,7 +64,7 @@
                                     <label for="slug">Category</label>
                                     <select class="form-control" name="category_id">
                                         @foreach ($categories as $category)
-                                            @if(old('category_id') == $category->id)
+                                            @if(old('category_id', $article->category_id) == $category->id)
                                                 <option value="{{ $category->id }}" selected>{{$category->name}}</option>
                                             @else
                                                 <option value="{{ $category->id }}">{{$category->name}}</option>
@@ -76,10 +77,10 @@
                                     @error('desc')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                    <input id="desc" type="hidden" name="desc" value="{{ old('desc') }}">
+                                    <input id="desc" type="hidden" name="desc" value="{{ old('desc', $article->desc) }}">
                                     <trix-editor input="desc"></trix-editor>
                                  </div>
-                                <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+                                <button type="submit" class="btn btn-success btn-sm">Update</button>
                             </form>
                         </div>
                     </div>

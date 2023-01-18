@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticlePostController extends Controller
 {
@@ -45,8 +46,15 @@ class ArticlePostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|unique:articles',
             'category_id' => 'required',
-            'body' => 'required'
+            'desc' => 'required'
         ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->desc), 200);
+
+        Article::create($validatedData);
+
+        return redirect('article')->with('success', 'Postingan berhasil ditambah!');
     }
 
     /**
@@ -70,7 +78,10 @@ class ArticlePostController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('dashboard.articles.edit', [
+            'article' => $article,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -82,7 +93,19 @@ class ArticlePostController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $rules = [
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'desc' => 'required'
+        ];
+
+        if($request->slug != $article->slug){
+            $rules['slug'] = 'required|unique:articles';
+        }
+
+        $validatedData = $request->validate($rules);
+
+
     }
 
     /**
@@ -93,7 +116,10 @@ class ArticlePostController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::destroy($article->id);
+
+        return redirect('article')->with('success', 'Postingan berhasil dihapus!');
+
     }
 
     public function checkSlug(Request $request){
