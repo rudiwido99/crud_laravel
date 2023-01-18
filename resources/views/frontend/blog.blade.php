@@ -25,7 +25,13 @@
 
             @if ($blog->count())
                 <div class="card mb-3 text-center">
-                    <img src="https://source.unsplash.com/1200x400/?{{ $blog[0]->category->name }}" class="card-img-top" alt="{{ $blog[0]->category->name }}">
+                    @if ($blog[0]->image)
+                        <div style="max-height: 400px; overflow:hidden;">
+                            <img src="{{ asset('storage/'. $blog[0]->image) }}" alt="{{ $blog[0]->category->name }}" class="img-fluid mt-3">
+                        </div>
+                    @else
+                        <img src="https://source.unsplash.com/1200x400/?{{ $blog[0]->category->name }}" class="card-img-top" alt="{{ $blog[0]->category->name }}">
+                    @endif
                     <div class="card-body">
                         <h5 class="card-title"><a href="post/{{$blog[0]->slug}}" class="text-decoration-none text-dark">{{$blog[0]->title}}</a></h5>
                         <p>
@@ -48,7 +54,11 @@
                         <div class="col-md-4 mb-3">
                             <div class="card">
                                 <div class="position-absolute px-3 py-2 text-white" style="background: rgb(0,0,0,0.7)"><a href="/posts?category={{ $item->category->slug }}" class="text-decoration-none text-white">{{ $item->category->name }}</a></div>
-                                <img src="https://source.unsplash.com/400x300?{{ $item->category->name }}" class="card-img-top" alt="{{ $item->category->name }}">
+                                @if ($blog->image)
+                                    <img src="{{ asset('storage/'. $blog->image) }}" alt="{{ $blog->category->name }}" class="img-fluid mt-3">
+                                @else
+                                    <img src="https://source.unsplash.com/400x300?{{ $item->category->name }}" class="card-img-top" alt="{{ $item->category->name }}">
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="post/{{$item->slug}}" class="text-decoration-none text-dark">{{ $item->title }}</a></h5>
                                     <small class="text-muted">

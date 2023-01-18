@@ -48,7 +48,7 @@
                             <h1 class="my-3">{{ $article->title }}</h1>
 
                                 <a href="{{ url('article') }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back to all my posts</a>
-                                <a href="" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="{{ url('article/'.$article->slug.'/edit') }}" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
                                 <form action="{{ $article->slug }}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data?')">
                                             @method('delete')
                                             @csrf
@@ -56,8 +56,13 @@
                                                 <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </form>
-
-                                <img src="https://source.unsplash.com/1200x400/?{{ $article->category->name }}" alt="{{ $article->category->name }}" class="img-fluid mt-3">
+                                @if ($article->image)
+                                    <div style="max-height: 350px; overflow:hidden;">
+                                        <img src="{{ asset('storage/'. $article->image) }}" alt="{{ $article->category->name }}" class="img-fluid mt-3">
+                                    </div>
+                                @else
+                                    <img src="https://source.unsplash.com/1200x400/?{{ $article->category->name }}" alt="{{ $article->category->name }}" class="img-fluid mt-3">
+                                @endif
 
                                 <article class="my-3">
                                     {!! $article->desc !!}

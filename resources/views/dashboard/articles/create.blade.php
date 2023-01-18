@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <form action="{{ url('article') }}" method="post">
+                            <form action="{{ url('article') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Judul *</label>
@@ -71,6 +71,15 @@
                                         @endforeach
                                     </select>
                                  </div>
+                                 <div class="mb-3">
+                                    <label for="image" class="form-label">Upload Image</label>
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                                    @error('image')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                                  <div class="form-group">
                                     <label for="slug">Tulis Artikel</label>
                                     @error('desc')

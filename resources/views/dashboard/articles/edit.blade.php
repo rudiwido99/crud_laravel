@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <form action="article'{{$article->slug}}"method="post">
+                            <form action="{{ url('article/'.$article->slug) }}" method="post">
                                 @method('put')
                                 @csrf
                                 <div class="form-group">

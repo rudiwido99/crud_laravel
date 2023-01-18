@@ -42,12 +42,19 @@ class ArticlePostController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:articles',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'desc' => 'required'
         ]);
+
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('article-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->desc), 200);
@@ -105,7 +112,13 @@ class ArticlePostController extends Controller
 
         $validatedData = $request->validate($rules);
 
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->desc), 200);
 
+        Article::where('id', $article->id)
+            ->update($validatedData);
+
+        return redirect('article')->with('success', 'Postingan berhasil diupdate!');
     }
 
     /**
