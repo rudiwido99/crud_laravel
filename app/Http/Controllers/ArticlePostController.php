@@ -7,6 +7,8 @@ use App\Models\Category;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class ArticlePostController extends Controller
 {
@@ -103,6 +105,7 @@ class ArticlePostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'desc' => 'required'
         ];
 
@@ -111,6 +114,13 @@ class ArticlePostController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+        
+        if($request->file('image')){
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('article-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->desc), 200);
@@ -129,8 +139,10 @@ class ArticlePostController extends Controller
      */
     public function destroy(Article $article)
     {
+        if ($article->image) {
+                Storage::delete($article->image);
+            }
         Article::destroy($article->id);
-
         return redirect('article')->with('success', 'Postingan berhasil dihapus!');
 
     }
