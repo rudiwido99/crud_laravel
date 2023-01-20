@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ArticlePostController;
+use App\Http\Controllers\AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,7 @@ Route::get('product/trash', [ProductController::class, 'trash']);
 Route::get('product/restore/{id?}', [ProductController::class, 'restore']);
 Route::get('product/delete/{id?}', [ProductController::class, 'delete']);
 Route::resource('product', ProductController::class);
+Route::resource('dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 
 

@@ -54,10 +54,15 @@
                     <li class="{{ Request::is("product") ? "active" : "" }}">
                         <a href="{{ url('product') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Produk </a>
                     </li>
-                     <li class="{{ Request::is("article*") ? "active" : "" }}">
+                    <li class="{{ Request::is("article*") ? "active" : "" }}">
                         <a href="{{ url('article') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Artikel </a>
                     </li>
-                    <h3 class="menu-title">Akses</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Administrator</h3><!-- /.menu-title -->
+                    <ul class="nav navbar-nav">
+                        <li class="{{ Request::is("dashboard/categories*") ? "active" : "" }}">
+                            <a href="{{ url('dashboard/categories') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Kategori </a>
+                        </li>
+                    </ul>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Member</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -66,6 +71,7 @@
                             <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
                         </ul>
                     </li>
+                
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
