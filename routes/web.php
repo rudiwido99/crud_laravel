@@ -93,6 +93,7 @@ Route::get('product/restore/{id?}', [ProductController::class, 'restore']);
 Route::get('product/delete/{id?}', [ProductController::class, 'delete']);
 Route::resource('product', ProductController::class);
 Route::resource('dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+// Route::resource('dashboard/categories', AdminCategoryController::class)->except('show');
 
 
 

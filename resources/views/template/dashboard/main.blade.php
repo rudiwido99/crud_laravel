@@ -57,12 +57,14 @@
                     <li class="{{ Request::is("article*") ? "active" : "" }}">
                         <a href="{{ url('article') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Artikel </a>
                     </li>
-                    <h3 class="menu-title">Administrator</h3><!-- /.menu-title -->
-                    <ul class="nav navbar-nav">
-                        <li class="{{ Request::is("dashboard/categories*") ? "active" : "" }}">
-                            <a href="{{ url('dashboard/categories') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Kategori </a>
-                        </li>
-                    </ul>
+                        @can('admin')
+                            <h3 class="menu-title">Administrator</h3><!-- /.menu-title -->
+                            <ul class="nav navbar-nav">
+                                <li class="{{ Request::is("dashboard/categories*") ? "active" : "" }}">
+                                    <a href="{{ url('dashboard/categories') }}"> <i class="menu-icon fa fa-shopping-cart"></i>Kategori </a>
+                                </li>
+                            </ul>
+                        @endcan
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Member</a>
                         <ul class="sub-menu children dropdown-menu">
