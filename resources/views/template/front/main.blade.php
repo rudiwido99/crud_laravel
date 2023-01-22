@@ -79,7 +79,7 @@
         <a href="#home">Home</a>
         <a href="#about">Tentang Kami</a>
         <a href="#menu">Menu</a>
-        <a href="#">Kontak</a>
+        <a href="#contact">Kontak</a>
         <a href="#">Artikel</a>
       </div>
 
