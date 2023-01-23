@@ -57,11 +57,6 @@
             <h3 class="menu-card-title">- Espresso -</h3>
             <p class="menu-card-price">IDR 15K</p>
         </div>
-        <div class="menu-card">
-            <img src="image/menu/1.jpg" alt="Espresso" class="menu-card-img">
-            <h3 class="menu-card-title">- Espresso -</h3>
-            <p class="menu-card-price">IDR 15K</p>
-        </div>
     </div>
 </section>
 {{-- End Menu Section --}}

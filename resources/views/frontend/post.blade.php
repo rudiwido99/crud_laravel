@@ -1,7 +1,8 @@
 @extends('template.front.main')
 @section('title', 'Single Post')
 @section('content')
-    <div class="container">
+<section class="about">
+        <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-8">
                 <h1 class="my-3">{{ $articles->title }}</h1>
@@ -25,4 +26,6 @@
             </div>
         </div>
     </div>
+</section>
+
 @endsection

@@ -1,7 +1,8 @@
 @extends('template.front.main')
 @section('title', 'Login')
 @section('content')
-    <div class="container">
+<section class="login">
+        <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5 mt-5">
                 @if (session()->has('success'))
@@ -45,6 +46,7 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 

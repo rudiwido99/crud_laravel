@@ -26,8 +26,7 @@ use App\Http\Controllers\AdminCategoryController;
 
 Route::get('/', function () {
     return view('home', [
-        'title' => 'Home',
-        'active' => 'home',
+        'title' => 'Home'
     ]);
 });
 
@@ -36,6 +35,14 @@ Route::get('about', function(){
         'title' => 'About',
         'active' => 'about',
     ]);
+});
+
+Route::get('menu', function(){
+    return view('frontend.menu');
+});
+
+Route::get('contact', function(){
+    return view('frontend.contact');
 });
 
 Route::get('categories', function(){

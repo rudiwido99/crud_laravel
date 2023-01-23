@@ -76,17 +76,40 @@
       <a href="#" class="navbar-logo">Kenangan<span>Kita</span>.</a>
 
       <div class="navbar-nav">
-        <a href="#home">Home</a>
-        <a href="#about">Tentang Kami</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Kontak</a>
-        <a href="#">Artikel</a>
+        <a href="/">Home</a>
+        <a href="about">Tentang Kami</a>
+        <a href="menu">Menu</a>
+        <a href="contact">Kontak</a>
+        <a href="posts">Artikel</a>
       </div>
 
       <div class="navbar-extra">
-        <a href="#" id="search"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        {{-- <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a> --}}
         <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        <ul class="navbar-nav ms-auto">
+                @auth
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-person-circle">  {{ auth()->user()->name }}</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ url('dashboard') }}"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li>
+                        <form action="logout" method="post">
+                          @csrf
+                          <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </li>
+                @else 
+                  <li class="nav-item">
+                    <a href="/login" class="nav-link"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                  </li>
+                @endauth
+            </ul>
       </div>
     </nav>
     {{-- Navbar End --}}
